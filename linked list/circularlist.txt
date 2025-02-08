@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void insertEnd(Node** head, int data) {
+    Node* newNode = createNode(data);
+    if (*head == NULL) {
+        *head = newNode;
+        newNode->next = *head;
+    } else {
+        Node* temp = *head;
+        while (temp->next != *head) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+        newNode->next = *head;
+    }
+    printf("%d inserted into the list\n", data);
+}
+
+void deleteNode(Node** head, int value) {
+    if (*head == NULL) return;
+
+    Node* temp = *head;
+
+    if (temp->data == value && temp->next == *head) {
+        free(temp);
+        *head = NULL;
+        return;
+    }
+
+    if (temp->data == value) {
+        while (temp->next != *head) {
+            temp = temp->next;
+        }
+        temp->next = (*head)->next;
+        temp = *head;
+        *head = (*head)->next;
+        free(temp);
+        return;
+    }
+
+    while (temp->next != *head && temp->next->data != value) {
+        temp = temp->next;
+    }
+
+    if (temp->next != *head) {
+        Node* toDelete = temp->next;
+        temp->next = toDelete->next;
+        free(toDelete);
+    } else {
+        printf("%d not found in the list\n", value);
+    }
+}
+
+void displayList(Node* head) {
+    if (head == NULL) return;
+
+    Node* temp = head;
+    do {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(head)\n");
+}
+
+int main() {
+    Node* head = NULL;
+
+    insertEnd(&head, 10);
+    insertEnd(&head, 20);
+    insertEnd(&head, 30);
+    insertEnd(&head, 40);
+    
+    printf("Circular Linked List: ");
+    displayList(head);
+
+    deleteNode(&head, 20);
+    printf("After deleting 20: ");
+    displayList(head);
+
+    deleteNode(&head, 10);
+    printf("After deleting 10: ");
+    displayList(head);
+
+    return 0;
+}
