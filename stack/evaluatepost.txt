@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define M 100
+int stack[M];
+int top=-1;
+void push(int item)
+{
+    if(top==M-1)
+    {
+        printf("STACK OVERFLOW");
+        return;
+    }
+    top++;
+    stack[top]=item;
+}
+int pop()
+{
+    if(top<0)
+    {
+        printf("STACK UNDERFLOW\n");
+        return -1;
+    }
+    int item=stack[top];
+    top--;
+    return item;
+}
+int isop(char sy)
+{
+    if(sy=='+'||sy=='-'||sy=='*'||sy=='/')
+        return 1;
+
+    return 0;
+}
+int evaluate(char* exp)
+{
+    int i=0;
+    char sy=exp[i];
+    int op1,op2,result;
+    while(sy!='\0')
+    {
+        if(sy>='0'&&sy<='9')
+        {
+            int num=sy-'0';
+            push(num);
+        }
+        else if(isop(sy))
+        {
+          op2 = pop();
+            op1 = pop();
+            switch(sy)
+            {
+                case '+': result = op1 + op2; break;
+                case '-': result = op1 - op2; break;
+                case '*': result = op1 * op2; break;
+                case '/': result = op1 / op2; break;
+            }
+        push(result);
+        }
+     i++;
+     sy=exp[i];
+    }
+    result=pop();
+    return result;
+}
+int main()
+{
+    char exp[20];
+    printf("enter the postfix expression:");
+    scanf("%s",&exp);
+    int result=evaluate(exp);
+    printf("result is:%d\n",result);
+    return 0;
+}
