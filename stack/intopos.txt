@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int prec(char c)
+{
+  if(c=='^')
+        return 3;
+  else if(c=='/'||c=='*')
+    return 2;
+  else if (c=='+'||c=='-')
+    return 1;
+  else
+    return -1;
+}
+char ass(char c)
+{
+    if(c=='^')
+    {
+        return 'R';
+    }
+    return 'L';
+}
+void intopos(char a[])
+{
+    char r[1000];
+    char s[1000];
+    int si=-1,ri=0;
+    int len=strlen(a);
+
+    for(int i=0;i<len;i++)
+    {
+       char c=a[i];
+       if((c>='a'&&c<='z')||(c>='A'&&c<='Z')||(c>='0'&&c<='9'))
+       {
+           r[ri++]=c;
+       }
+       else if(c=='(')
+       {
+           s[++si]=c;
+       }
+       else if(c==')')
+       {
+           while(si>=0 && s[si]!='(')
+           {
+               r[ri++]=s[si--];
+           }
+           si--;
+       }
+       else
+       {
+        while(si>=0 &&(prec(c)<prec(s[si])|| prec(c)==prec(s[si])&&ass(c)=='L'))
+       {
+           r[ri++]=s[si--];
+       }
+       s[++si]=c;
+       }
+    }
+    while(si>=0)
+    {
+        r[ri++]=s[si--];
+    }
+    r[ri]='\0';
+    printf("%s\n",r);
+}
+int main()
+{
+
+    char exp[100];
+    printf("enter the expression:");
+    scanf("%s",exp);
+    intopos(exp);
+    return 0;
+}
