@@ -10,7 +10,7 @@ This repository contains implementations of fundamental data structures in C .
 - **C:** [array.c](C/array.c)
 
 ### 🔹 Linked List
-- **C:** [linked_list.c](C/linked_list.c)
+- **C:** [linked_list.c](linked list)
 
 
 ### 🔹 Stack
