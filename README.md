@@ -7,26 +7,12 @@ This repository contains implementations of fundamental data structures in C .
 ## 📌 Implemented Data Structures
 
 ### 🔹 Arrays
-- **C:** [array.c](C/array.c)
-
 ### 🔹 Linked List
-- **C:** [linked_list.c](F:\SEM 3\DS\linked list)
-
-
 ### 🔹 Stack
-- **C:** [stack.c](C/stack.c)
-- 
 ### 🔹 Queue
-- **C:** [queue.c](C/queue.c)
-
 ### 🔹 Binary Tree
-- **C:** [binary_tree.c](C/binary_tree.c)
-
 ### 🔹 Graph
-- **C:** [graph.c](C/graph.c)
-
 ### 🔹  Sorting
-- **C:** [sorting.c](C/sorting.c)
 
 ## 🚀 Getting Started
 
