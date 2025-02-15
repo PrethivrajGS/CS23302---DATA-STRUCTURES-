@@ -1,6 +1,6 @@
 # Data Structures in C
 
-This repository contains implementations of fundamental data structures in C and C++.
+This repository contains implementations of fundamental data structures in C .
 
 ## 📂 Folder Structure
 
@@ -24,6 +24,9 @@ This repository contains implementations of fundamental data structures in C and
 
 ### 🔹 Graph
 - **C:** [graph.c](C/graph.c)
+
+### 🔹  Sorting
+- **C:** [sorting.c](C/sorting.c)
 
 ## 🚀 Getting Started
 
