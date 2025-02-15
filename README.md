@@ -1,4 +1,4 @@
-# Data Structures in C and C++
+# Data Structures in C
 
 This repository contains implementations of fundamental data structures in C and C++.
 
@@ -32,7 +32,7 @@ This repository contains implementations of fundamental data structures in C and
    git clone https://github.com/your-username/Data-Structures.git
    cd Data-Structures
 
-   🙏 Vote of Thanks
-A huge thanks to the open-source community, educators, and fellow programmers for providing valuable resources and knowledge. Special appreciation to platforms like GeeksforGeeks, MIT OCW, and GitHub for making learning accessible to all.
+  
+A huge thanks to my staff Dr.Neelavathy Pari  for providing valuable resources and knowledge. Special appreciation to platforms like GeeksforGeeks, MIT OCW, and GitHub for making learning accessible to all.
 
-Your support and contributions help keep this project growing. Happy coding! 🚀
+Your support and contributions helps growing myself. Happy coding! 🚀
