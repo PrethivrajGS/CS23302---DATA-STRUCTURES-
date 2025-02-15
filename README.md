@@ -4,8 +4,6 @@ A huge thanks to my staff Dr.Neelavathy Pari  for providing valuable resources a
 
 This repository contains implementations of fundamental data structures in C .
 
-## 📂 Folder Structure
-
 ## 📌 Implemented Data Structures
 
 ### 🔹 Arrays
@@ -14,7 +12,9 @@ This repository contains implementations of fundamental data structures in C .
 ### 🔹 Queue
 ### 🔹 Binary Tree
 ### 🔹 Graph
-### 🔹  Sorting
+### 🔹 Sorting
+### 🔹 Searching
+
 
 ## 📚 CS23302 - Data Structures Syllabus
 
