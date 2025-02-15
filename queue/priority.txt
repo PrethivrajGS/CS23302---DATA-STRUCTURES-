@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int value;
+    int priority;
+    struct Node* next;
+};
+
+int is_empty(struct Node* head) {
+    return head == NULL;
+}
+
+void enqueue(struct Node** head, int value, int priority) {
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    new_node->value = value;
+    new_node->priority = priority;
+    new_node->next = NULL;
+
+    if (is_empty(*head) || (*head)->priority > priority) {
+        new_node->next = *head;
+        *head = new_node;
+    } else {
+        struct Node* temp = *head;
+        while (temp->next != NULL && temp->next->priority <= priority) {
+            temp = temp->next;
+        }
+        new_node->next = temp->next;
+        temp->next = new_node;
+    }
+}
+
+int dequeue(struct Node** head) {
+    if (is_empty(*head)) {
+        return -1;
+    }
+
+    struct Node* temp = *head;
+    *head = (*head)->next;
+    int value = temp->value;
+    free(temp);
+    return value;
+}
+
+int peek(struct Node* head) {
+    if (is_empty(head)) {
+        return -1;
+    }
+    return head->value;
+}
+
+int main() {
+    struct Node* pq = NULL;
+
+    enqueue(&pq, 10, 2);
+    enqueue(&pq, 5, 1);
+    enqueue(&pq, 20, 3);
+
+    printf("Peek: %d\n", peek(pq));
+
+    printf("Dequeued: %d\n", dequeue(&pq));
+    printf("Peek: %d\n", peek(pq));
+
+    return 0;
+}
