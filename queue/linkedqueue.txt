@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Queue {
+    struct Node *front;
+    struct Node *rear;
+};
+
+void initQueue(struct Queue *q) {
+    q->front = q->rear = NULL;
+}
+
+void enqueue(struct Queue *q, int x) {
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    if (t == NULL) {
+        printf("Queue is full\n");
+    } else {
+        t->data = x;
+        t->next = NULL;
+        if (q->front == NULL) {
+            q->front = q->rear = t;
+        } else {
+            q->rear->next = t;
+            q->rear = t;
+        }
+    }
+}
+
+int dequeue(struct Queue *q) {
+    int x = -1;
+    struct Node *t;
+    if (q->front == NULL) {
+        printf("Queue is Empty\n");
+    } else {
+        t = q->front;
+        q->front = q->front->next;
+        if (q->front == NULL) {
+            q->rear = NULL;
+        }
+        x = t->data;
+        free(t);
+    }
+    return x;
+}
+
+void display(struct Queue *q) {
+    struct Node *p = q->front;
+    while (p) {
+        printf("%d ", p->data);
+        p = p->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    struct Queue q;
+    initQueue(&q); 
+    enqueue(&q, 1);
+    enqueue(&q, 2);
+    enqueue(&q, 3);
+    enqueue(&q, 4);
+    enqueue(&q, 5);
+    printf("Deleted %d\n", dequeue(&q));
+  
+    enqueue(&q, 14);
+    enqueue(&q, 15);
+    display(&q);
+
+    return 0;
+}
