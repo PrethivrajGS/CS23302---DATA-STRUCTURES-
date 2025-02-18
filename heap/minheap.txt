@@ -1,0 +1,103 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct minheap
+{
+    int* arr;
+    int size,capacity;
+}min;
+min* createmin(int capacity)
+{
+    min* heap=(min*)malloc(sizeof(min));
+    heap->capacity=capacity;
+    heap->size=0;
+    heap->arr=(int*)malloc(capacity*sizeof(int));
+    return heap;
+}
+void swap(int *a,int *b)
+{
+    int temp;
+    temp=*a;
+    *a=*b;
+    *b=temp;
+}
+void heapify(min* heap,int index)
+{
+    int smallest=index;
+    int left=(2*index)+1;
+    int right=(2*index)+2;
+    if (left < heap->size && heap->arr[left] < heap->arr[smallest])
+    {
+        smallest = left;
+    }
+     if (right < heap->size && heap->arr[right] < heap->arr[smallest]) 
+     {
+        smallest = right;
+    }
+     if (smallest != index)
+    {
+        swap(&heap->arr[index], &heap->arr[smallest]);
+        heapify(heap, smallest);
+    }
+}
+void insert(min* heap,int key)
+{
+     if (heap->size == heap->capacity) {
+        printf("Heap is full. Cannot insert.\n");
+        return;
+     }
+        
+         heap->arr[heap->size] = key;
+         heap->size++;
+    for (int i = (heap->size / 2) - 1; i >= 0; i--) 
+    {
+        heapify(heap, i);
+    }
+}
+int extractMin(min* heap) 
+{
+    if (heap->size == 0) 
+    {
+        printf("Heap is empty.\n");
+        return -1;
+    }
+    if (heap->size == 1)
+    {
+        heap->size--;
+        return heap->arr[0];
+    }
+    int root = heap->arr[0];
+    heap->arr[0] = heap->arr[heap->size - 1];
+    heap->size--;
+    heapify(heap, 0);
+
+    return root;
+}
+void printHeap(min* heap) 
+{
+    for (int i = 0; i < heap->size; i++) 
+    {
+        printf("%d ", heap->arr[i]);
+    }
+    printf("\n");
+}
+int main() {
+    min* heap = createmin(10);
+
+    insert(heap, 3);
+    insert(heap, 1);
+    insert(heap, 6);
+    insert(heap, 5);
+    insert(heap, 2);
+    insert(heap, 4);
+
+    printf("Min Heap: ");
+    printHeap(heap);
+
+    printf("Extracted Min: %d\n", extractMin(heap));
+    printf("Heap after extraction: ");
+    printHeap(heap);
+
+    free(heap->arr);
+    free(heap);
+    return 0;
+}
