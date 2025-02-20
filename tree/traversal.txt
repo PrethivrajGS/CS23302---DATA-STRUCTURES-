@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+typedef struct node
+{
+        int data;
+        struct node* left;
+        struct node* right;
+}bt;
+void in(bt* root)
+{
+        if(root==NULL)
+        {
+                return;
+        }
+        in(root->left);
+        printf("%d ",root->data);
+        in(root->right);
+}
+void pre(bt* root)
+{
+        if(root==NULL)
+        {
+                return;
+        }
+        printf("%d ",root->data);
+        pre(root->left);
+        pre(root->right);
+}
+void post(bt* root)
+{
+        if(root==NULL)
+        {
+                return;
+        }
+        post(root->left);
+        post(root->right);
+        printf("%d ",root->data);
+}
+bt* newnode(int data)
+{
+        bt* node=(bt*)malloc(sizeof(bt));
+        node->data=data;
+        node->left=node->right=NULL;
+}
+int main()
+{
+        bt* root=newnode(3);
+        root->left=newnode(4);
+        root->right=newnode(5);
+        root->left->left=newnode(6);
+        root->left->right=newnode(10);
+        root->right->left=newnode(8);
+        printf("INORDER TRAVERSAL:");
+        in(root);
+        printf("\nPREORDER TRAVERSAL:");
+        pre(root);
+        printf("\nPOSTORDER TRAVERSAL:");
+        post(root);
+        return 0;
+}
